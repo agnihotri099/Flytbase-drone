@@ -38,7 +38,10 @@ A comprehensive RESTful API service for managing drones, missions, and flight lo
 
 2. Create environment file:
 ```bash
-    cp .env.example .env
+    NODE_ENV=production
+MONGODB_URI=mongodb://mongo:27017/drone_management
+    JWT_SECRET=your_secure_jwt_secret
+    PORT=3000
 ```
 
 
@@ -71,4 +74,79 @@ The API will be available at `http://localhost:3000`
 ```
 
 The API will be available at `http://localhost:3000`
+
+
+## API Documentation
+
+### Authentication
+
+#### Register User
+
+POST /api/auth/register
+Content-Type: application/json
+{
+"name": "Test User",
+"email": "test@example.com",
+"password": "password123"
+}
+
+
+#### Login
+
+POST /api/auth/login
+Content-Type: application/json
+{
+"email": "test@example.com",
+"password": "password123"
+}
+
+
+
+### Drones
+
+#### Get All Drones
+
+GET /api/drones
+Authorization: Bearer <token>
+
+
+#### Get Single Drone
+
+GET /api/drones/:id
+Authorization: Bearer <token>
+
+
+## Development
+
+### Available Scripts
+
+- `npm run dev`: Start development server
+- `npm run build`: Build TypeScript code
+- `npm start`: Start production server
+- `npm test`: Run tests
+- `npm run lint`: Run ESLint
+
+### Docker Commands
+
+Build the containers:
+```bash
+    docker-compose build
+```
+
+Start the services:
+```bash
+    docker-compose up
+```
+
+Stop the services:
+```bash
+    docker-compose down
+```
+
+
+View logs:
+```bash
+    docker-compose logs -f
+```
+
 
