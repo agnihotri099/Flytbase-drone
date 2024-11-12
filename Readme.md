@@ -115,6 +115,71 @@ Authorization: Bearer <token>
 GET /api/drones/:id
 Authorization: Bearer <token>
 
+#### Post Drone
+
+POST http://localhost:3000/api/drones
+Authorization: Bearer <token>
+Body (JSON):
+{
+    "name": "Drone 1",
+    "drone_type": "Quadcopter",
+    "make_name": "DJI"
+}
+
+
+### Missions
+
+#### GET ALL MISSIONS
+
+GET http://localhost:3000/api/missions
+Headers: 
+- Authorization: Bearer <token>
+
+#### GET MISSION BY ID
+
+GET http://localhost:3000/api/missions/:id
+Headers: 
+- Authorization: Bearer <token>
+
+#### POST MISSION
+
+POST http://localhost:3000/api/missions
+Headers: 
+- Authorization: Bearer <token>
+Body (JSON):
+{
+    "name": "Mission 1",
+    "description": "Test mission",
+    "drone_id": "drone_123",
+    "waypoints": [
+        {
+            "latitude": 12.345,
+            "longitude": 67.890,
+            "altitude": 100
+        }
+    ]
+}
+
+
+### Flight Logs APIs
+
+#### GET ALL FLIGHT LOGS
+
+GET http://localhost:3000/api/flight-logs
+Headers: 
+- Authorization: Bearer <token>
+Query Parameters (optional):
+- limit: number (default: 10)
+- skip: number (default: 0)
+
+#### GET FLIGHT BY ID
+
+GET http://localhost:3000/api/flight-logs/:flightId
+Headers: 
+- Authorization: Bearer <token>
+
+
+
 
 ## Development
 
