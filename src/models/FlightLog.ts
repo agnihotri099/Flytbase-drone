@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Drone from './Drone';
 
 const flightLogSchema = new mongoose.Schema({
   flight_id: {

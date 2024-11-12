@@ -16,6 +16,20 @@ const waypointSchema = new mongoose.Schema({
 });
 
 const missionSchema = new mongoose.Schema({
+  mission_id: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  drone_id: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,

@@ -21,15 +21,18 @@ export class MissionSimulationService {
    */
   async startSimulation(missionId: string, droneId: string): Promise<string> {
     // Validate mission and drone
-    const mission = await Mission.findById(missionId);
+    // console.log("started simulation")
+    const mission = await Mission.findOne({mission_id:missionId});
     const drone = await Drone.findOne({ drone_id: droneId });
 
     if (!mission || !drone) {
       throw new Error('Mission or drone not found');
     }
+    // console.log(mission.waypoints)
 
     const flightId = uuidv4();
     const totalDistance = this.calculateTotalDistance(mission.waypoints);
+    // console.log("distance",totalDistance)
 
     // Create flight log
     const flightLog = new FlightLog({
@@ -40,17 +43,20 @@ export class MissionSimulationService {
       speed: mission.speed,
       distance: totalDistance,
       execution_start: new Date(),
-      execution_end: null
+      execution_end: new Date()
     });
 
     await flightLog.save();
-
+    
     // Initialize simulation state
     const simulationState: SimulationState = {
       isRunning: true,
       currentWaypoint: 0,
       flightId
     };
+    
+    console.log("HIHIHIHIHI222")
+    console.log("state",simulationState)
 
     activeSimulations.set(flightId, simulationState);
 
